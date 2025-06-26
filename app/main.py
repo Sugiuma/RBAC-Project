@@ -23,6 +23,9 @@ app = FastAPI()
 security = HTTPBasic()
 load_dotenv()
 
+# -------------------------
+# === DUCKDB SETUP ===
+# -------------------------
 # Set path to DuckDB database file
 DUCKDB_DIR = Path("static/data")
 DUCKDB_DIR.mkdir(parents=True, exist_ok=True)  # ensure directory exists
@@ -41,7 +44,7 @@ duck_conn.execute("""
 
 
 # -------------------------
-# === DATABASE SETUP ===
+# === SQLITE DATABASE SETUP ===
 # -------------------------
 
 conn = sqlite3.connect("roles_docs.db", check_same_thread=False)
