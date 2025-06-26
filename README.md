@@ -12,7 +12,6 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **Query Classifier**: to route user queries to the appropriate retrieval mode.
 * **Fallback Mechanism**: to ensure graceful degradation when structured query fails.
 * **Cohere Reranker**: to ensure better user trust in responses
-
 ---
 ## **System Architecture Diagram**
 
@@ -91,7 +90,6 @@ In edge cases, a **fallback mechanism** is implemented:
 
    * Return a graceful message,
    * Suggest rephrasing or uploading new content.
-
 This ensures the system is **resilient** and never leaves the user with a hard error.
 ---
 
@@ -119,7 +117,6 @@ An **automated evaluation pipeline** to assess output quality:
 ### **Backend API Testing – Pytest**
 
 * FastAPI endpoints (`/chat`, `/upload`, `/register`, etc.) tested using `TestClient`
-* Mocked DB dependencies (`get_db()`) to avoid touching production data
 * Verified classifier routing, SQL execution, RAG fallback logic
 
 ### **Frontend Testing – Playwright**
