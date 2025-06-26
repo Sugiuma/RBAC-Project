@@ -1,0 +1,19 @@
+streamlit
+fastapi
+uvicorn
+openai
+langchain
+chromadb
+sqlite3  # builtin
+passlib[bcrypt]
+pandas
+python-dotenv
+requests
+cohere
+duckdb
+tabulate
+pydantic
+python-dotenv
+pytest
+playwright
+pytest-playwright
