@@ -42,8 +42,6 @@ def test_c_level_full_flow(page):
     dropdown_popup = page.get_by_test_id("stSelectboxVirtualDropdown")
     dropdown_popup.get_by_text("QA Team", exact=True).click()
     # Select option by visible text
-    #page.get_by_text("QA Team").click()
-    #page.get_by_role("combobox", name="Select Role").select_option("QA Team")  # Assumes labeled combobox
     page.get_by_role("button", name="Create User").click()
     page.wait_for_selector("text=User 'qa_user' added", timeout=15000)
     
@@ -73,10 +71,9 @@ def test_c_level_full_flow(page):
 # Upload markdown file
     page.locator('input[type="file"]').set_input_files("tests/sample_docs/sample_hr.md")
 
-    #page.get_by_test_id("stFileUploaderDropzone").set_input_files("tests/sample_docs/sample_hr.md")
     dropdown.wait_for(timeout=15000)
     
-    #page.get_by_role("combobox", name="Select Role for Document").select_option("QA Team")
+    
     
     page.get_by_role("button", name="Upload Document").click()
     page.wait_for_timeout(15000)
