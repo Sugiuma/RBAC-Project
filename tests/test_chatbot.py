@@ -118,7 +118,7 @@ def test_chat_rag_blocks_cross_role(mock_ask_rag, mock_detect, regular_auth):
     # Check role filtering is enforced
     mock_ask_rag.assert_called_once()
     _, kwargs = mock_ask_rag.call_args
-    assert kwargs["role"] == "HR"  # Role passed must be user's role
+    assert kwargs["role"] == "HR"  # users role
 
     # Validate response is still returned safely
     assert res.status_code == 200
@@ -135,7 +135,7 @@ def test_chat_sql_blocks_cross_role(mock_ask_csv, mock_detect, regular_auth):
 
     mock_ask_csv.assert_called_once()
     _, kwargs = mock_ask_csv.call_args
-    assert kwargs["role"] == "HR"  # Should not be Finance
+    assert kwargs["role"] == "HR" 
 
     assert res.status_code == 200
     assert "answer" in res.json()
