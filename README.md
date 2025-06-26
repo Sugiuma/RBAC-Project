@@ -14,6 +14,7 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **Cohere Reranker**: to ensure better user trust in responses
 
 ## **System Architecture Diagram**
+![Sample Image](static/images/arch.png)
 
 ## **Key Features**
 
