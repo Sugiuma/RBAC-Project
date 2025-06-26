@@ -12,7 +12,7 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **Query Classifier**: to route user queries to the appropriate retrieval mode.
 * **Fallback Mechanism**: to ensure graceful degradation when structured query fails.
 * **Cohere Reranker**: to ensure better user trust in responses
----
+
 ## **System Architecture Diagram**
 
 ## **Key Features**
@@ -33,7 +33,7 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 | **RAG** | General, text-based queries | Chroma DB + LLM   |
 | **SQL** | Structured/tabular queries  | DuckDB SQL engine |
 
----
+
 
 ## **3. Why DuckDB for Structured Queries?**
 
@@ -47,7 +47,7 @@ Adopted **DuckDB** for handling structured queries on uploaded CSVs because:
 
 This made DuckDB a perfect fit for answering precise, structured queries over tabular data uploaded by the user.
 
----
+
 
 ## **4. Query Classification Module**
 
@@ -65,7 +65,7 @@ A **query classifier** was implemented to determine the intent behind the user's
 
 This significantly **improved accuracy and speed**, avoiding LLM overhead when a SQL answer sufficed.
 
----
+
 ## **5. Reranking with Cohere**
 
 To improve relevance of retrieved documents, added a **Cohere Reranker** in the RAG flow:
@@ -74,7 +74,7 @@ To improve relevance of retrieved documents, added a **Cohere Reranker** in the 
 * Reranker scores them based on their semantic match with the query,
 * Only top-N reranked chunks are passed to the LLM
 
----
+
 
 ## **6. Fallback Handling Strategy**
 
@@ -91,7 +91,7 @@ In edge cases, a **fallback mechanism** is implemented:
    * Return a graceful message,
    * Suggest rephrasing or uploading new content.
 This ensures the system is **resilient** and never leaves the user with a hard error.
----
+
 
 ## **7. Evaluation Framework for RAG (LLM-RAG Eval)**
 
@@ -110,7 +110,7 @@ An **automated evaluation pipeline** to assess output quality:
 * Store per-metric scores in CSV for further analytics
 * Used to compare performance with/without reranker and classifier
 
----
+
 
 ## **8. Automation Testing**
 
