@@ -10,6 +10,7 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **DuckDB**: for SQL-like queries over structured data (CSV).
 * **Query Classifier**: to route user queries to the appropriate retrieval mode.
 * **Fallback Mechanism**: to ensure graceful degradation when structured query fails.
+* **Cohere Reranker**: to ensure better user trust in responses
 
 ---
 
