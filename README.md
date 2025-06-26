@@ -157,4 +157,6 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 
 * Run tests:
 * Backend tests : pytest tests/test_chatbot.py --html=report.html
-* UI test : pytest tests/test_ui.py --headed  # to see browser
+* UI test :
+* Start frontend & backend, then run the test_ui.py
+* pytest tests/test_ui.py --headed  # to see browser
