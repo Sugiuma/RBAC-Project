@@ -178,12 +178,13 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 * Clone this repo
 * Install dependencies
   
-* Run the app:
+* **Run the app:**
 * uvicorn app.main:app --reload 
 * streamlit run app/ui.py
 
-* Run tests:
-* Backend tests : pytest tests/test_chatbot.py --html=report.html
-* UI test :
+* **Run tests:**
+* **Backend tests:** pytest tests/test_chatbot.py --html=report.html
+  
+* **UI test:**
 * Start frontend & backend, then run the test_ui.py
 * pytest tests/test_ui.py --headed  # to see browser
