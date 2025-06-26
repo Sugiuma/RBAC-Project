@@ -7,11 +7,11 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 
 * **Streamlit UI**: for user login, role-based access, and document upload.
 * **FastAPI backend**: for business logic, user management, and RAG handling.
-* **Chroma vector store**: for dense embedding search (unstructured).
-* **DuckDB**: for SQL-like queries over structured data (CSV).
 * **Query Classifier agent**: to route user queries to the appropriate retrieval mode.
 * **SQL Agent**: processes structured data queries using an LLM for translation and DuckDB for execution.
 * **RAG Agent**: retrieves and synthesizes responses from unstructured documents using embeddings and LLMs.
+* **DuckDB**: for SQL-like queries over structured data (CSV).
+* **Chroma vector store**: for dense embedding search (unstructured).
 * **Fallback Mechanism**: to ensure graceful degradation when structured query fails.
 * **Cohere Reranker**: to ensure better user trust in responses
 
