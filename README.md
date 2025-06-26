@@ -146,3 +146,15 @@ This project delivers a **production-ready RAG system** with:
 * Automated evaluation and testing at every layer.
 
 This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that dynamically routes user queries to either unstructured (LLM-based) or structured (SQL-based) engines. The use of **DuckDB**, **query classification**, and **fallback design** has led to a robust solution that balances performance, explainability, and adaptability. With strong modularity and extensibility it’s an ideal architecture for real-world enterprise AI assistants where both document knowledge and structured analytics are needed in one place
+
+## **Quick Start**
+* Clone this repo
+* Install dependencies
+  
+* Run the app:
+* uvicorn app.main:app --reload 
+* streamlit run app/ui.py
+
+* Run tests:
+* Backend tests : pytest tests/test_chatbot.py --html=report.html
+* UI test : pytest tests/test_ui.py --headed  # to see browser
