@@ -1,5 +1,5 @@
 # **Project Report**
-## **FinSight - AI document assistant - A Role-Based RAG System**
+## **FinSight - AI document assistant - A Role-Based Access Control System**
 
 ## **Project Overview**
 
