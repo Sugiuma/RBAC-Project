@@ -14,6 +14,7 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **Cohere Reranker**: to ensure better user trust in responses
 
 ---
+## **System Architecture Diagram**
 
 ## **Key Features**
 
@@ -37,13 +38,13 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 
 ## **3. Why DuckDB for Structured Queries?**
 
-We adopted **DuckDB** for handling structured queries on uploaded CSVs because:
+Adopted **DuckDB** for handling structured queries on uploaded CSVs because:
 
-* ✅ **In-process SQL engine**: DuckDB runs embedded in Python, no separate server needed.
-* ✅ **Zero setup**: No configuration required; great for file-based structured queries.
-* ✅ **Lightweight + Fast**: Efficiently handles large CSV files in memory.
-* ✅ **Supports Pandas + SQL natively**: Easy to switch between Python dataframes and SQL.
-* ✅ **Isolated query execution**: Each user session can be sandboxed.
+* **In-process SQL engine**: DuckDB runs embedded in Python, no separate server needed.
+* **Zero setup**: No configuration required; great for file-based structured queries.
+* **Lightweight + Fast**: Efficiently handles large CSV files in memory.
+* **Supports Pandas + SQL natively**: Easy to switch between Python dataframes and SQL.
+* **Isolated query execution**: Each user session can be sandboxed.
 
 This made DuckDB a perfect fit for answering precise, structured queries over tabular data uploaded by the user.
 
@@ -58,7 +59,6 @@ A **query classifier** was implemented to determine the intent behind the user's
 | RAG    | Chroma + LLM  | “Summarize this finance document” |
 | SQL    | DuckDB        | “List invoices over \$5000”       |
 
-* We trained a lightweight intent classifier using examples and embeddings.
 * The classifier directs the query to either:
 
   * RAG (textual search in vector DB),
@@ -69,16 +69,11 @@ This significantly **improved accuracy and speed**, avoiding LLM overhead when a
 ---
 ## **5. Reranking with Cohere**
 
-To improve relevance of retrieved documents, we added a **Cohere Reranker** in the RAG flow:
+To improve relevance of retrieved documents, added a **Cohere Reranker** in the RAG flow:
 
 * After Chroma vector search retrieves top-k chunks,
 * Reranker scores them based on their semantic match with the query,
-* **Only top-N reranked** chunks are passed to the LLM
-
-📈 **Impact**:
-
-* Improved **faithfulness** and **relevance**
-* Reduced hallucinations and better user trust in responses
+* Only top-N reranked chunks are passed to the LLM
 
 ---
 
@@ -102,15 +97,15 @@ This ensures the system is **resilient** and never leaves the user with a hard e
 
 ## **7. Evaluation Framework for RAG (LLM-RAG Eval)**
 
-We used an **automated evaluation pipeline** to assess output quality:
+An **automated evaluation pipeline** to assess output quality:
 
-### 📊 Metrics:
+### Metrics:
 
 * **Faithfulness**: Is the response grounded in retrieved content?
 * **Relevance**: Is the answer contextually appropriate?
 * **Conciseness**: Is it direct and non-redundant?
 
-### 🧪 How it works:
+### How it works:
 
 * Collect query-response pairs during usage
 * Run them through an **OpenAI or LLM-based evaluator**
@@ -121,25 +116,15 @@ We used an **automated evaluation pipeline** to assess output quality:
 
 ## **8. Automation Testing**
 
-### 🔍 **Backend API Testing – Pytest**
+### **Backend API Testing – Pytest**
 
-* ✅ FastAPI endpoints (`/chat`, `/upload`, `/register`, etc.) tested using `TestClient`
-* ✅ Mocked DB dependencies (`get_db()`) to avoid touching production data
-* ✅ Verified classifier routing, SQL execution, RAG fallback logic
+* FastAPI endpoints (`/chat`, `/upload`, `/register`, etc.) tested using `TestClient`
+* Mocked DB dependencies (`get_db()`) to avoid touching production data
+* Verified classifier routing, SQL execution, RAG fallback logic
 
-Example test:
-
-```python
-def test_chat_sql_query_classified(monkeypatch):
-    response = client.post("/chat", json={"question": "List all HR employees"})
-    assert response.status_code == 200
-    assert "name" in response.json()["answer"]
-```
-
-### 🧪 **Frontend Testing – Playwright**
+### **Frontend Testing – Playwright**
 
 * End-to-end tests for **Streamlit UI**:
-
   * Login flow
   * Role-based tab rendering
   * Document upload
@@ -147,33 +132,17 @@ def test_chat_sql_query_classified(monkeypatch):
 
 * 🎥 **Video recording** enabled for demo and review
 
-Sample snippet:
-
-```python
-def test_role_based_upload(page):
-    page.goto("http://localhost:8501")
-    page.fill("input[name='username']", "admin")
-    page.fill("input[name='password']", "adminpass")
-    page.click("button:has-text('Login')")
-    assert page.get_by_text("Upload (C-Level)").is_visible()
-```
-
-## **System Architecture Diagram**
-
-
----
 
 ## **Future Enhancements**
 
-* ✅ Integrate **OpenInference** for evaluation (faithfulness, relevance).
-* ✅ Support **admin analytics dashboard** (e.g., query types, usage).
-* ✅ Add **table+text hybrid retrieval** (RAG with tabular fusion).
-* ✅ Caching of SQL queries for repeated execution.
+* Integrate **OpenInference** for evaluation (faithfulness, relevance).
+* Support **admin analytics dashboard** (e.g., query types, usage).
+* Add **table+text hybrid retrieval** (RAG with tabular fusion).
+* Caching of SQL queries for repeated execution.
 
 ## **Conclusion**
 
 This project delivers a **production-ready RAG system** with:
-
 * Role-based access,
 * Dual-mode intelligent query routing (LLM vs SQL),
 * Reranking for precision,
