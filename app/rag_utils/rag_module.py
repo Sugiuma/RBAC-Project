@@ -181,11 +181,11 @@ def get_rag_chain(user_role: str,cohere_api_key: str = None):
 """
 # ========== MAIN EXECUTION ==========
 if __name__ == "__main__":
-    run_indexer()  # Index new docs if any
+    run_indexer()  
 """
     # ========== EXAMPLE USAGE ==========
 """
-    user_role = "hr"  # Try "hr", "finance", etc.
+    user_role = "hr"  
     rag_chain = get_rag_chain(user_role)
 
     
