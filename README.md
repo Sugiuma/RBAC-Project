@@ -154,7 +154,7 @@ An **automated evaluation pipeline** to assess output quality:
   * Document upload
   * Query submission and output display
 
-* 🎥 **Video recording** enabled for demo and review
+* **Video recording** enabled for demo and review
 
 
 ## **Future Enhancements**
