@@ -3,7 +3,7 @@
 
 ## **Project Overview**
 
-This project implements an advanced **Retrieval-Augmented Generation (RAG)** system tailored for multi-role enterprise environments. Users can upload documents (Markdown, CSV), and the system retrieves answers based on the user's role. Queries are intelligently routed to the appropriate engine (LLM or SQL), and responses are enhanced by reranking and evaluated for quality. The architecture includes:
+This project implements an advanced **Retrieval-Augmented Generation (RAG)** system tailored for multi-role enterprise environments. Users can upload documents (Markdown, CSV), and the system retrieves answers based on the user's role. Queries are classified and routed accordingly — SQL-type queries are translated to SQL using an LLM and executed on DuckDB, while RAG-type queries are answered via the retrieval-augmented generation pipeline, and responses are enhanced by reranking and evaluated for quality. The architecture includes:
 
 * **Streamlit UI**: for user login, role-based access, and document upload.
 * **FastAPI backend**: for business logic, user management, and RAG handling.
