@@ -158,6 +158,15 @@ An **automated evaluation pipeline** to assess output quality:
 
 * **Video recording** enabled for demo and review
 
+## **Tech Stack**
+ * AI/LLM: OpenAI GPT-4o, LangChain
+ * Backend: FastAPI, SQLite, DuckDB
+ * Frontend: Streamlit
+ * Vector DB: Chroma DB
+ * File Support: Markdown, CSV
+ * Access Control: RBAC
+ * Testing: Pytest, Playwright
+
 
 ## **Future Enhancements**
 
@@ -179,10 +188,17 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 ## **Quick Start**
 * Clone this repo
 * Install dependencies
+  pip install -r requirements.txt
+  Use your open_api key
   
 * **Run the app:**
-* uvicorn app.main:app --reload 
+* Terminal 1 (FastAPI server):
+* uvicorn app.main:app --reload
+
+* Terminal 2 (Streamlit UI):
 * streamlit run app/ui.py
+
+Open your browser and go to http://localhost:8501
 
 * **Run tests:**
 * **Backend tests:** pytest tests/test_chatbot.py --html=report.html
@@ -190,3 +206,4 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 * **UI test:**
 * Start frontend & backend, then run the test_ui.py
 * pytest tests/test_ui.py --headed  # to see browser
+
