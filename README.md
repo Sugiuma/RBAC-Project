@@ -41,7 +41,6 @@ flowchart TD
   
 ```
 
-![Sample Image](static/images/arch.png)
 
 ## **Key Features**
 
