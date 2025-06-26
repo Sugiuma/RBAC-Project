@@ -185,25 +185,49 @@ This project delivers a **production-ready RAG system** with:
 
 This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that dynamically routes user queries to either unstructured (LLM-based) or structured (SQL-based) engines. The use of **DuckDB**, **query classification**, and **fallback design** has led to a robust solution that balances performance, explainability, and adaptability. With strong modularity and extensibility it’s an ideal architecture for real-world enterprise AI assistants where both document knowledge and structured analytics are needed in one place
 
+
 ## **Quick Start**
-* Clone this repo
-* Install dependencies
-  pip install -r requirements.txt
-  Use your open_api key
-  
-* **Run the app:**
-* Terminal 1 (FastAPI server):
-* uvicorn app.main:app --reload
 
-* Terminal 2 (Streamlit UI):
-* streamlit run app/ui.py
+## 1. Clone the Repository
+```bash
+git clone <your-repo-url>
+cd <your-repo-folder>
+````
 
-Open your browser and go to http://localhost:8501
+## 2. Install Dependencies
+```bash
+pip install -r requirements.txt
+```
 
-* **Run tests:**
-* **Backend tests:** pytest tests/test_chatbot.py --html=report.html
-  
-* **UI test:**
-* Start frontend & backend, then run the test_ui.py
-* pytest tests/test_ui.py --headed  # to see browser
+## 3. Add Your API Keys
+Make sure to set your `OPENAI_API_KEY`, `LANGCHAIN_API_KEY` & `COHERE_API_KEY` in a secret_key.py file.
+
+## 4. Run the Application
+### Terminal 1 - Start FastAPI Server
+```bash
+uvicorn app.main:app --reload
+```
+### Terminal 2 - Start Streamlit UI
+```bash
+streamlit run app/ui.py
+```
+Then open your browser and go to:
+```
+http://localhost:8501
+```
+
+
+## 5. Run Tests
+### Backend Tests
+```bash
+pytest tests/test_chatbot.py --html=report.html
+```
+
+### UI Tests
+Ensure both the frontend and backend are running, then:
+```bash
+pytest tests/test_ui.py --headed  # --headed lets you see the browser
+```
+
+
 
