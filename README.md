@@ -10,6 +10,9 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 * **Chroma vector store**: for dense embedding search (unstructured).
 * **DuckDB**: for SQL-like queries over structured data (CSV).
 * **Query Classifier**: to route user queries to the appropriate retrieval mode.
+* A Classifier Agent routes queries based on their intent.
+A SQL Agent processes structured data queries using an LLM for translation and DuckDB for execution.
+A RAG Agent retrieves and synthesizes responses from unstructured documents using embeddings and LLMs.
 * **Fallback Mechanism**: to ensure graceful degradation when structured query fails.
 * **Cohere Reranker**: to ensure better user trust in responses
 
