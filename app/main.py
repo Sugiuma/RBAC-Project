@@ -232,7 +232,7 @@ async def chat(req: ChatRequest, user=Depends(authenticate)):
     # 2. Route to appropriate handler
     if mode == "SQL":
         result = await ask_csv(question, role, username, return_sql=True)
-        #result = await ask_csv(question)  # assuming ask_csv returns dict with "answer" or similar
+        #result = await ask_csv(question)  
     else:
     
         result = await ask_rag(question, role)  # pass role to enforce role-based doc access
