@@ -175,7 +175,7 @@ An **automated evaluation pipeline** to assess output quality:
 
 This project delivers a **production-ready RAG system** with:
 * Role-based access,
-* Dual-mode intelligent query routing (LLM vs SQL),
+* Dual-mode intelligent query routing,
 * Reranking for precision,
 * Automated evaluation and testing at every layer.
 
