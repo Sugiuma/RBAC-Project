@@ -181,14 +181,21 @@ This project delivers a **production-ready RAG system** with:
 
 This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that dynamically routes user queries to either unstructured (LLM-based) or structured (SQL-based) engines. The use of **DuckDB**, **query classification**, and **fallback design** has led to a robust solution that balances performance, explainability, and adaptability. With strong modularity and extensibility it’s an ideal architecture for real-world enterprise AI assistants where both document knowledge and structured analytics are needed in one place
 
+### Roles and Permissions
+
+| **Role**              | **Permissions**                                                                                  |
+|-----------------------|--------------------------------------------------------------------------------------------------|
+| **Finance Team**      | Access to financial reports, marketing expenses, equipment costs, reimbursements, etc.          |
+| **Marketing Team**    | Access to campaign performance data, customer feedback, and sales metrics.                      |
+| **HR Team**           | Access to employee data, attendance records, payroll, and performance reviews.                  |
+| **Engineering Dept.** | Access to technical architecture, development processes, and operational guidelines.            |
+| **C-Level Executives**| Full access to all company data.                                                                 |
+| **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
+
 
 ## **Quick Start**
 
 ## 1. Clone the Repository
-```bash
-git clone <your-repo-url>
-cd <your-repo-folder>
-````
 
 ## 2. Install Dependencies
 ```bash
