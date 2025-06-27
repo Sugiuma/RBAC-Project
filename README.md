@@ -141,7 +141,7 @@ An **automated evaluation pipeline** to assess output quality:
 
 ### **Backend API Testing – Pytest**
 
-* FastAPI endpoints (`/chat`, `/upload`, `/register`, etc.) tested using `TestClient`
+* FastAPI endpoints (`/chat`, `/upload`, `/login`, etc.) tested using `TestClient`
 * Verified classifier routing, SQL execution, RAG fallback logic
 
 ### **Frontend Testing – Playwright**
@@ -272,5 +272,9 @@ Ensure both the frontend and backend are running, then:
 pytest tests/test_ui.py --headed  # --headed lets you see the browser
 ```
 
-
+## **Query Samples**
+HR: "List all employees with more than 20 leaves remaining."
+Engineering: "What DevOps practices are followed in FinSolve?"
+Finance: "What were the Q2 vendor expenses?"
+General: "How can I apply for leave?"
 
