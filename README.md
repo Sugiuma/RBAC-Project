@@ -18,29 +18,24 @@ This project implements an advanced **Retrieval-Augmented Generation (RAG)** sys
 ## **System Architecture Diagram**
 ```mermaid
 flowchart TD
-    A[Streamlit UI] --> B[FastAPI Backend]
+    A[User Query<br/>Streamlit UI<br/>FastAPI Backend ] --> B{Query Classifier Agent <br/> SQL or RAG?}
 
-    B --> C{Query Classifier<br> SQL or RAG?}
-    B --- H1[(SQLite<br>Users, Roles, Docs)]
-   
+    B -- SQL --> C[SQL Agent<br/>NLP → SQL LLM → DuckDB]
+    B -- RAG --> E[RAG Agent<br/>Vector Search + LLM]
 
-    %% SQL Branch
-    C -->|SQL| D[SQL Agent<br>- NL→SQL via LLM<br>- DuckDB<br>- Role-based table access]
-    D --- H2[(DuckDB<br>CSV Data)]
-    
+    C -- Success --> F[SQL Response to User]
+    C -- Fail or Incomplete --> D[Fallback Triggered]
 
-    %% RAG Branch
-    C -->|RAG| E[RAG Agent<br>- Chroma Vector DB<br>- Cohere Reranker<br>- Role-based doc filter]
-    E --- H3[(Chroma DB<br>Embeddings)]
- 
+    D --> E
+    E --> G[RAG Response to User]
 
-    %% Fallback Logic
-    D --> F{SQL Success?}
-    F -->|Yes| G[Final Answer to User]
-    F -->|No| E
-    E --> G
-
-  
+    style A fill:#f9f,stroke:#333,stroke-width:1px
+    style B fill:#bbf,stroke:#333,stroke-width:1px
+    style C fill:#bfb,stroke:#333,stroke-width:1px
+    style D fill:#fcc,stroke:#333,stroke-width:1px
+    style E fill:#bdf,stroke:#333,stroke-width:1px
+    style F fill:#dff,stroke:#333,stroke-width:1px
+    style G fill:#dff,stroke:#333,stroke-width:1px
 ```
 
 
