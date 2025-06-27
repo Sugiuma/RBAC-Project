@@ -192,6 +192,45 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 | **C-Level Executives**| Full access to all company data.                                                                 |
 | **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
 
+├── app
+│   ├── __init__.py
+│   ├── main.py
+│   ├── rag_evaluator
+│   │   ├── eval_merge_role_summary.py
+│   │   ├── eval_summary.py
+│   │   ├── evaluation_results_openai.csv
+│   │   ├── evaluator.py
+│   │   ├── final_eval_with_roles.csv
+│   │   └── qa_pairs_openai.csv
+│   ├── rag_utils
+│   │   ├── __init__.py
+│   │   ├── csv_query.py
+│   │   ├── query_classifier.py
+│   │   ├── rag_chain.py
+│   │   ├── rag_module.py
+│   │   └── secret_key.py #API keys
+│   └── ui.py
+├── assets
+│   └── style.css
+├── report.html #pytest report
+├── requirements.txt
+├── resources # Finsolve Data 
+├── static
+│   ├── data
+│   │   └── structured_queries.duckdb
+│   ├── images
+│   │   └── background.jpg
+│   └── uploads #stores all uploaded docs based on role
+
+├── tests
+│   ├── conftest.py
+│   ├── sample_docs
+│   │   └── sample_hr.md
+│   ├── test_chatbot.py
+│   └── test_ui.py
+└── videos
+    └── 36e32bb47b4f6cf28789e56b539f23e0.webm #Playwright video recording
+
 
 ## **Quick Start**
 
