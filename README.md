@@ -192,6 +192,8 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 | **C-Level Executives**| Full access to all company data.                                                                 |
 | **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
 
+### Project structure
+```
 ├── app
 │   ├── __init__.py
 │   ├── main.py
@@ -221,7 +223,6 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 │   ├── images
 │   │   └── background.jpg
 │   └── uploads #stores all uploaded docs based on role
-
 ├── tests
 │   ├── conftest.py
 │   ├── sample_docs
@@ -230,7 +231,7 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 │   └── test_ui.py
 └── videos
     └── 36e32bb47b4f6cf28789e56b539f23e0.webm #Playwright video recording
-
+```
 
 ## **Quick Start**
 
