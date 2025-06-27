@@ -89,18 +89,7 @@ A **query classifier** was implemented to determine the intent behind the user's
 
 This significantly **improved accuracy and speed**, avoiding LLM overhead when a SQL answer sufficed.
 
-
-## **5. Reranking with Cohere**
-
-To improve relevance of retrieved documents, added a **Cohere Reranker** in the RAG flow:
-
-* After Chroma vector search retrieves top-k chunks,
-* Reranker scores them based on their semantic match with the query,
-* Only top-N reranked chunks are passed to the LLM
-
-
-
-## **6. Fallback Handling Strategy**
+## **5. Fallback Handling Strategy**
 
 In edge cases, a **fallback mechanism** is implemented:
 
@@ -115,6 +104,18 @@ In edge cases, a **fallback mechanism** is implemented:
    * Return a graceful message,
    * Suggest rephrasing or uploading new content.
 This ensures the system is **resilient** and never leaves the user with a hard error.
+
+## **6. Reranking with Cohere**
+
+To improve relevance of retrieved documents, added a **Cohere Reranker** in the RAG flow:
+
+* After Chroma vector search retrieves top-k chunks,
+* Reranker scores them based on their semantic match with the query,
+* Only top-N reranked chunks are passed to the LLM
+
+
+
+
 
 
 ## **7. Evaluation Framework for RAG (LLM-RAG Eval)**
