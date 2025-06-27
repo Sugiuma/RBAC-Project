@@ -210,7 +210,7 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 │   │   ├── query_classifier.py
 │   │   ├── rag_chain.py
 │   │   ├── rag_module.py
-│   │   └── secret_key.py #API keys
+│   │   └── secret_key.py                 ## API keys
 │   └── ui.py                             ## Streamlit frontend
 ├── assets
 │   └── style.css
