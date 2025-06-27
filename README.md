@@ -196,34 +196,34 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 ```
 ├── app
 │   ├── __init__.py
-│   ├── main.py
-│   ├── rag_evaluator
+│   ├── main.py                           ## FastAPI backend
+│   ├── rag_evaluator                     ## Rag evaluation & results
 │   │   ├── eval_merge_role_summary.py
 │   │   ├── eval_summary.py
 │   │   ├── evaluation_results_openai.csv
 │   │   ├── evaluator.py
 │   │   ├── final_eval_with_roles.csv
 │   │   └── qa_pairs_openai.csv
-│   ├── rag_utils
+│   ├── rag_utils                        ## Rag & SQL Agent
 │   │   ├── __init__.py
 │   │   ├── csv_query.py
 │   │   ├── query_classifier.py
 │   │   ├── rag_chain.py
 │   │   ├── rag_module.py
 │   │   └── secret_key.py #API keys
-│   └── ui.py
+│   └── ui.py                             ## Streamlit frontend
 ├── assets
 │   └── style.css
-├── report.html #pytest report
+├── report.html                           ## pytest report
 ├── requirements.txt
-├── resources # Finsolve Data 
+├── resources                             ## Finsolve Data 
 ├── static
 │   ├── data
 │   │   └── structured_queries.duckdb
 │   ├── images
 │   │   └── background.jpg
-│   └── uploads #stores all uploaded docs based on role
-├── tests
+│   └── uploads                           ## stores all uploaded docs based on role
+├── tests                                 ## Tests
 │   ├── conftest.py
 │   ├── sample_docs
 │   │   └── sample_hr.md
