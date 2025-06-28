@@ -272,8 +272,10 @@ pytest tests/test_ui.py --headed  # --headed lets you see the browser
 ```
 
 ## **Query Samples**
-HR: "List all employees with more than 20 leaves remaining."
-Engineering: "What DevOps practices are followed in FinSolve?"
-Finance: "What were the Q2 vendor expenses?"
-General: "How can I apply for leave?"
+1. Give me a summary about system architecture Engg
+2. Give me the details of employees in Data department whose performance rating is 5 HR 
+3. What percentage of the Vendor Services expense was allocated to marketing-related activities? - finance
+4. What is the Return on Investment (ROI) for FinSolve Technologies? - finance 
+5. Give me details about leave policies. - General
+6. What was the percentage increase in FinSolve Technologies's net income in 2024? - General
 
