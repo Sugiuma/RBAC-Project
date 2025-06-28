@@ -38,17 +38,48 @@ flowchart TD
     style G fill:#dff,stroke:#333,stroke-width:1px
 ```
 
+### **Architecture Overview**
+
+* Combines **structured data querying (SQL)** with **unstructured document retrieval (RAG)**.
+* Ensures **high accuracy and flexibility** by selecting the most appropriate engine per query.
+* Implements **fallback logic** for robustness — the user always gets a meaningful response.
+* This system is designed to intelligently respond to user queries using either **structured SQL** or **unstructured RAG** depending on the nature of the query.
+
+### **End-to-End Flow:**
+#### 1. **User Interface Layer**
+* A user enters a question through a **Streamlit UI**.
+* This query is sent to the **FastAPI backend**, which handles the core logic.
+
+#### 2. **Query Classification**
+* The query first reaches a **Query Classifier Agent**, which analyzes it and decides:
+  * **Is this a structured query?** (e.g., about data in a table)
+  * **Or an unstructured query?** (e.g., asking for procedural guidance)
+
+#### 3. **SQL Agent Path**
+* If the classifier determines it's an **SQL-type query**:
+  * The query goes to the **SQL Agent**, which uses an **LLM to convert natural language into SQL**.
+  * The generated SQL is executed using **DuckDB**, a fast in-process SQL engine.
+  * If the query executes successfully, the result is sent back to the user as a **SQL Response**.
+    
+#### 4. **Fallback Mechanism**
+* If the SQL query **fails** or the response is **incomplete**, a **Fallback Trigger** is activated.
+* The system automatically reroutes the query to the **RAG Agent**.
+
+#### 5. **RAG Agent Path**
+
+* The **RAG Agent** retrieves relevant information from documents using **Vector Search** (e.g., via ChromaDB).
+* The LLM then generates a coherent answer from the retrieved chunks.
+* The final **RAG-based response** is sent back to the user.
+
 
 ## **Key Features**
 
 ### **1. Role-Based Access Control**
-
 * Users are assigned roles (e.g., HR, Finance, QA).
 * Each document is tagged with the role it’s meant for.
 * Queries are filtered to only retrieve content associated with the user's role.
 
 ### **2. Dual Query Handling (RAG + SQL)**
-
 * **Unstructured queries** (e.g., "What are the QA best practices?") → handled by Chroma vector search + LLM.
 * **Structured queries** (e.g., "Show me all employees with salary > 100K") → handled via DuckDB.
   
@@ -58,9 +89,7 @@ flowchart TD
 | **SQL** | Structured/tabular queries  | DuckDB SQL engine |
 
 
-
 ## **3. Why DuckDB for Structured Queries?**
-
 Adopted **DuckDB** for handling structured queries on uploaded CSVs because:
 
 * **In-process SQL engine**: DuckDB runs embedded in Python, no separate server needed.
@@ -72,80 +101,57 @@ Adopted **DuckDB** for handling structured queries on uploaded CSVs because:
 This made DuckDB a perfect fit for answering precise, structured queries over tabular data uploaded by the user.
 
 
-
 ## **4. Query Classification Module**
-
 A **query classifier** was implemented to determine the intent behind the user's input:
 
 | Intent | Target System | Example Query                     |
 | ------ | ------------- | --------------------------------- |
 | RAG    | Chroma + LLM  | “Summarize this finance document” |
-| SQL    | DuckDB        | “List invoices over \$5000”       |
+| SQL    | DuckDB        | “List employees earning over $50k”|
 
 * The classifier directs the query to either:
-
   * RAG (textual search in vector DB),
   * SQL (execute structured query using DuckDB).
-
 This significantly **improved accuracy and speed**, avoiding LLM overhead when a SQL answer sufficed.
 
 ## **5. Fallback Handling Strategy**
-
 In edge cases, a **fallback mechanism** is implemented:
-
 1. If a **SQL query fails** (e.g., malformed, missing table):
-
    * Log the error,
    * Fallback to the RAG system with rephrased prompt like:
      *"Unable to process SQL. Try answering from available documents instead."*
 
 2. If **no relevant docs** found in RAG:
-
    * Return a graceful message,
    * Suggest rephrasing or uploading new content.
 This ensures the system is **resilient** and never leaves the user with a hard error.
 
 ## **6. Reranking with Cohere**
-
 To improve relevance of retrieved documents, added a **Cohere Reranker** in the RAG flow:
-
 * After Chroma vector search retrieves top-k chunks,
 * Reranker scores them based on their semantic match with the query,
 * Only top-N reranked chunks are passed to the LLM
 
-
-
-
-
-
 ## **7. Evaluation Framework for RAG (LLM-RAG Eval)**
-
 An **automated evaluation pipeline** to assess output quality:
 
 ### Metrics:
-
 * **Faithfulness**: Is the response grounded in retrieved content?
 * **Relevance**: Is the answer contextually appropriate?
 * **Conciseness**: Is it direct and non-redundant?
 
 ### How it works:
-
 * Collect query-response pairs during usage
 * Run them through an **OpenAI or LLM-based evaluator**
 * Store per-metric scores in CSV for further analytics
 * Used to compare performance with/without reranker and classifier
 
-
-
 ## **8. Automation Testing**
-
 ### **Backend API Testing – Pytest**
-
 * FastAPI endpoints (`/chat`, `/upload`, `/login`, etc.) tested using `TestClient`
 * Verified classifier routing, SQL execution, RAG fallback logic
 
 ### **Frontend Testing – Playwright**
-
 * End-to-end tests for **Streamlit UI**:
   * Login flow
   * Role-based tab rendering
@@ -163,16 +169,12 @@ An **automated evaluation pipeline** to assess output quality:
  * Access Control: RBAC
  * Testing: Pytest, Playwright
 
-
 ## **Future Enhancements**
-
-* Integrate **OpenInference** for evaluation (faithfulness, relevance).
 * Support **admin analytics dashboard** (e.g., query types, usage).
 * Add **table+text hybrid retrieval** (RAG with tabular fusion).
 * Caching of SQL queries for repeated execution.
 
 ## **Conclusion**
-
 This project delivers a **production-ready RAG system** with:
 * Role-based access,
 * Dual-mode intelligent query routing,
@@ -234,7 +236,6 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 ```
 
 ## **Quick Start**
-
 ## 1. Clone the Repository
 
 ## 2. Install Dependencies
@@ -258,7 +259,6 @@ Then open your browser and go to:
 ```
 http://localhost:8501
 ```
-
 
 ## 5. Run Tests
 ### Backend Tests
