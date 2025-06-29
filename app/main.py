@@ -67,6 +67,7 @@ CREATE TABLE IF NOT EXISTS documents (
     filename TEXT,
     role TEXT,
     filepath TEXT NOT NULL,
+    headers_str TEXT,
     embedded INTEGER DEFAULT 0
 );
 """)
@@ -187,6 +188,10 @@ async def upload_docs(file: UploadFile = File(...), role: str = Form(...)):
             df1 = pd.read_csv(filepath)
             table_name = Path(filepath).stem.replace("-", "_")
 
+            # Save metadata including headers
+            headers = df1.columns.tolist()
+            headers_str = ",".join(headers)
+
             duck_conn.execute(f"CREATE OR REPLACE TABLE {table_name} AS SELECT * FROM df1")
 
             # ✅ Save metadata to DuckDB tables_metadata
@@ -197,14 +202,16 @@ async def upload_docs(file: UploadFile = File(...), role: str = Form(...)):
 
         elif extension == ".md":
             content = data.decode("utf-8")
+            headers_str = None  # explicitly set to None
+            
         else:
             raise HTTPException(status_code=400, detail="Unsupported file type")
 
         # Save metadata to DB
         conn = sqlite3.connect("roles_docs.db")
         c = conn.cursor()
-        c.execute("INSERT INTO documents (filename, role, filepath) VALUES (?, ?, ?)",
-                  (filename, role, filepath))
+        c.execute("INSERT INTO documents (filename, role, filepath,headers_str,embedded) VALUES (?, ?, ?,?,?)",
+                  (filename, role, filepath, headers_str,0))
         #doc_id = c.lastrowid  # ✅ Get inserted doc ID
         conn.commit()
         conn.close()
@@ -232,7 +239,7 @@ async def chat(req: ChatRequest, user=Depends(authenticate)):
     # 2. Route to appropriate handler
     if mode == "SQL":
         result = await ask_csv(question, role, username, return_sql=True)
-        #result = await ask_csv(question)  
+        #result = await ask_csv(question) 
     else:
     
         result = await ask_rag(question, role)  # pass role to enforce role-based doc access
