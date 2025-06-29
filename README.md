@@ -133,7 +133,7 @@ To improve relevance of retrieved documents, added a **Cohere Reranker** in the 
 * Only top-N reranked chunks are passed to the LLM
 
 ## **7. Evaluation Framework for RAG (LLM-RAG Eval)**
-An **automated evaluation pipeline** to assess output quality:
+An **automated evaluation pipeline** to assess output quality. It generates question-answer (QA) pairs from existing documents and evaluates how well the RAG model performs on these questions by comparing the predicted answers against reference answers using LLM-based evaluation.
 
 ### Metrics:
 * **Faithfulness**: Is the response grounded in retrieved content?
@@ -261,6 +261,15 @@ Ensure both the frontend and backend are running, then:
 ```bash
 pytest tests/test_ui.py --headed  # --headed lets you see the browser
 ```
+
+### RAG evaluation
+Run the scripts: evaluator.py 
+
+Output:
+qa_pairs_openai.csv: Synthetic QA pairs.
+evaluation_results_openai.csv: Model predictions with evaluation scores.
+final_eval_with_roles.csv : Generates final predictions based on roles.
+
 ### Roles and Permissions
 
 | **Role**              | **Permissions**                                                                                  |
