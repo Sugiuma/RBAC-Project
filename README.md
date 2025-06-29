@@ -145,14 +145,7 @@ An **automated evaluation pipeline** to assess output quality. It generates ques
 * Run them through an **OpenAI or LLM-based evaluator**
 * Store per-metric scores in CSV for further analytics
 * Used to compare performance with/without reranker and classifier
-* 
-### Output - for 15 test samples
-=== Role-based Evaluation Summary ===
-         faithfulness  relevancy  context_recall
-role
-c-level           1.0       1.00            1.00
-finance           1.0       1.00            0.93
-hr                0.9       1.00            0.93
+
 
 ## **8. Automation Testing**
 ### **Backend API Testing – Pytest**
@@ -274,9 +267,9 @@ pytest tests/test_ui.py --headed  # --headed lets you see the browser
 Run the scripts: evaluator.py 
 
 Output:
-qa_pairs_openai.csv: Synthetic QA pairs.
-evaluation_results_openai.csv: Model predictions with evaluation scores.
-final_eval_with_roles.csv : Generates final predictions based on roles.
+1. qa_pairs_openai.csv: Synthetic QA pairs.
+2. evaluation_results_openai.csv: Model predictions with evaluation scores.
+3. final_eval_with_roles.csv : Generates final predictions based on roles.
 
 ### Roles and Permissions
 
