@@ -290,10 +290,10 @@ Output:
 5. Nolan  nolan123 - General	
 
 ## **Query Samples**
-1. Give me a summary about system architecture Engg
-2. Give me the details of employees in Data department whose performance rating is 5 HR 
-3. What percentage of the Vendor Services expense was allocated to marketing-related activities? - finance
-4. What is the Return on Investment (ROI) for FinSolve Technologies? - finance 
-5. Give me details about leave policies. - General
-6. What was the percentage increase in FinSolve Technologies's net income in 2024? - General
+1. Give me a summary about system architecture --  Engg
+2. Give me the details of employees in Data department whose performance rating is 5 -- HR 
+3. What percentage of the Vendor Services expense was allocated to marketing-related activities? -- finance
+4. What is the Return on Investment (ROI) for FinSolve Technologies? -- finance 
+5. Give me details about leave policies. -- General
+6. What was the percentage increase in FinSolve Technologies's net income in 2024? - Finance
 
