@@ -145,6 +145,14 @@ An **automated evaluation pipeline** to assess output quality. It generates ques
 * Run them through an **OpenAI or LLM-based evaluator**
 * Store per-metric scores in CSV for further analytics
 * Used to compare performance with/without reranker and classifier
+* 
+### Output - for 15 test samples
+=== Role-based Evaluation Summary ===
+         faithfulness  relevancy  context_recall
+role
+c-level           1.0       1.00            1.00
+finance           1.0       1.00            0.93
+hr                0.9       1.00            0.93
 
 ## **8. Automation Testing**
 ### **Backend API Testing – Pytest**
