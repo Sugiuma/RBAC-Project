@@ -223,16 +223,7 @@ This RAG system demonstrates a **flexible, intelligent retrieval pipeline** that
 └── videos
     └── 36e32bb47b4f6cf28789e56b539f23e0.webm #Playwright video recording
 ```
-### Roles and Permissions
 
-| **Role**              | **Permissions**                                                                                  |
-|-----------------------|--------------------------------------------------------------------------------------------------|
-| **Finance Team**      | Access to financial reports, marketing expenses, equipment costs, reimbursements, etc.          |
-| **Marketing Team**    | Access to campaign performance data, customer feedback, and sales metrics.                      |
-| **HR Team**           | Access to employee data, attendance records, payroll, and performance reviews.                  |
-| **Engineering Dept.** | Access to technical architecture, development processes, and operational guidelines.            |
-| **C-Level Executives**| Full access to all company data.                                                                 |
-| **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
 
 ## **Quick Start**
 ## 1. Clone the Repository
@@ -270,6 +261,17 @@ Ensure both the frontend and backend are running, then:
 ```bash
 pytest tests/test_ui.py --headed  # --headed lets you see the browser
 ```
+### Roles and Permissions
+
+| **Role**              | **Permissions**                                                                                  |
+|-----------------------|--------------------------------------------------------------------------------------------------|
+| **Finance Team**      | Access to financial reports, marketing expenses, equipment costs, reimbursements, etc.          |
+| **Marketing Team**    | Access to campaign performance data, customer feedback, and sales metrics.                      |
+| **HR Team**           | Access to employee data, attendance records, payroll, and performance reviews.                  |
+| **Engineering Dept.** | Access to technical architecture, development processes, and operational guidelines.            |
+| **C-Level Executives**| Full access to all company data.                                                                 |
+| **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
+
 ## **Sample users**
 Tony password123 - engineering"
 Bruce securepass - marketing
