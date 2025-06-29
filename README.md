@@ -270,6 +270,12 @@ Ensure both the frontend and backend are running, then:
 ```bash
 pytest tests/test_ui.py --headed  # --headed lets you see the browser
 ```
+## **Sample users**
+Tony password123 - engineering"
+Bruce securepass - marketing
+Sam financepass - finance
+Natasha hrpass123 - hr
+Nolan  nolan123 - General	
 
 ## **Query Samples**
 1. Give me a summary about system architecture Engg
