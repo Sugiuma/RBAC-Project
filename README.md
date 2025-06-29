@@ -273,11 +273,11 @@ pytest tests/test_ui.py --headed  # --headed lets you see the browser
 | **Employee Level**    | Access only to general company information such as policies, events, and FAQs.                  |
 
 ## **Sample users**
-Tony password123 - engineering"
-Bruce securepass - marketing
-Sam financepass - finance
-Natasha hrpass123 - hr
-Nolan  nolan123 - General	
+1. Tony password123 - engineering
+2. Bruce securepass - marketing
+3. Sam financepass - finance
+4. Natasha hrpass123 - hr
+5. Nolan  nolan123 - General	
 
 ## **Query Samples**
 1. Give me a summary about system architecture Engg
