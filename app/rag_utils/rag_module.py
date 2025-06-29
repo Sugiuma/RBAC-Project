@@ -52,50 +52,66 @@ def embed_documents_to_vectorstore(docs):
     #    print(f"---\n{chunk.page_content[:150]}...\nMetadata: {chunk.metadata}")
 
 
+
+
 def load_file(filepath, role):
     ext = Path(filepath).suffix.lower()
     try:
         if ext == ".csv":
             df1 = pd.read_csv(filepath)
-            content = df1.to_string(index=False)
-               
+            documents = []
+            for row in df1.to_dict(orient="records"):
+                content = "\n".join(f"{k}: {v}" for k, v in row.items())
+                documents.append(
+                    Document(
+                        page_content=content,
+                        metadata={"role": role.lower(), "source": Path(filepath).name}
+                    )
+                )
+            return documents  # Return a list of documents
 
         elif ext == ".md":
             with open(filepath, "r", encoding="utf-8") as f:
                 content = f.read()
+            return [
+                Document(
+                    page_content=content,
+                    metadata={"role": role.lower(), "source": Path(filepath).name}
+                )
+            ]
         else:
             return None
 
-        return Document(
-            page_content=content,
-            metadata={"role": role.lower(), "source": Path(filepath).name}
-        )
     except Exception as e:
         print(f"Failed to process {filepath}: {e}")
         return None
+
 
 def run_indexer():
     conn = sqlite3.connect("roles_docs.db")
     c = conn.cursor()
     c.execute("SELECT id, filepath, role FROM documents WHERE embedded = 0")
-    docs_to_embed = []
+    
+    all_docs = []
 
     for doc_id, path, role in c.fetchall():
-        doc = load_file(path, role)
-        if doc:
-            docs_to_embed.append((doc_id, doc))
+        docs = load_file(path, role)
+        if docs:
+            if isinstance(docs, list):
+                all_docs.extend(docs)
+            else:
+                all_docs.append(docs)
 
-    if docs_to_embed:
-        docs = [d for (_, d) in docs_to_embed]
-        #print(docs)
-        embed_documents_to_vectorstore(docs)
-
-        for doc_id, _ in docs_to_embed:
+            # Mark this file as embedded
             c.execute("UPDATE documents SET embedded = 1 WHERE id = ?", (doc_id,))
+
+    if all_docs:
+        embed_documents_to_vectorstore(all_docs)
         conn.commit()
 
     conn.close()
-    print(f"Indexed {len(docs_to_embed)} documents.")
+    print(f"Indexed {len(all_docs)} document chunks.")
+
 
 # ==============================
 # ========== PROMPT TEMPLATE ==========
@@ -181,11 +197,11 @@ def get_rag_chain(user_role: str,cohere_api_key: str = None):
 """
 # ========== MAIN EXECUTION ==========
 if __name__ == "__main__":
-    run_indexer()  
+    run_indexer() 
 """
     # ========== EXAMPLE USAGE ==========
 """
-    user_role = "hr"  
+    user_role = "hr" 
     rag_chain = get_rag_chain(user_role)
 
     
