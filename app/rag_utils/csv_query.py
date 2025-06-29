@@ -44,9 +44,9 @@ def is_safe_query(sql: str) -> bool:
     return lowered.startswith("select") and all(word not in lowered for word in FORBIDDEN)
 
 def translate_nl_to_sql(question: str, allowed_tables: list[str]) -> str:
-    print("✅ translate_nl_to_sql() called")
+    print("translate_nl_to_sql() called")
     conn = sqlite3.connect(DB_PATH, check_same_thread=False)
-    print("🔍 Using DB path:", DB_PATH)
+    print("Using DB path:", DB_PATH)
     cur = conn.cursor()
 
     # fetch headers from table
@@ -55,7 +55,7 @@ def translate_nl_to_sql(question: str, allowed_tables: list[str]) -> str:
         WHERE embedded = 1 AND headers_str IS NOT NULL
     """)
     rows = cur.fetchall()
-    print("📄 Raw rows from DB:", rows)
+    print("Raw rows from DB:", rows)
     conn.close()
 
     schemas = []
@@ -120,17 +120,17 @@ async def ask_csv(question: str, role: str, username: str, return_sql: bool = Fa
 
     try:
         sql = translate_nl_to_sql(question, allowed_tables)
-        print(f"[🔍 SQL GENERATED]:\n{sql}")
+        print(f"[SQL GENERATED]:\n{sql}")
 
         if not is_safe_query(sql):
-            return {"answer": "⚠️ Only SELECT queries are allowed.", "error": True}
+            return {"answer": "Only SELECT queries are allowed.", "error": True}
 
         raw_matches = extract_tables_from_sql(sql)
         referenced_tables = flatten_matches(raw_matches)
 
         for table in referenced_tables:
             if table not in allowed_tables:
-                return {"answer": f"⛔ Access denied to table: {table}", "error": True}
+                return {"answer": f"Access denied to table: {table}", "error": True}
 
         result = duck_conn.execute(sql).fetchall()
         columns = [desc[0] for desc in duck_conn.description]
@@ -138,7 +138,7 @@ async def ask_csv(question: str, role: str, username: str, return_sql: bool = Fa
 
         markdown_table = tabulate.tabulate(output, headers=columns, tablefmt="github")
         response = {
-            "answer": markdown_table if output else "✅ Query executed, but no results found."
+            "answer": markdown_table if output else "Query executed, but no results found."
         }
 
         if return_sql:
